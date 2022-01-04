@@ -1,70 +1,205 @@
 // import 'package:flutter/material.dart';
 //
-// class BottomNavBar extends StatelessWidget {
-//   const BottomNavBar({Key? key}) : super(key: key);
+// class FeedVid extends StatefulWidget {
+//   const FeedVid({Key? key}) : super(key: key);
 //
 //   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.bottomCenter,
-//       child: Container(
-//         decoration: BoxDecoration(
-//           color: Colors.white,
-//         ),
-//         width: MediaQuery.of(context).size.width,
-//         height: 60,
-//         alignment: Alignment.center,
-//         padding: const EdgeInsets.only(top: 10),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: const [
-//             NavIcon(
-//               iconData: Icons.home,
-//               label: "Home",
-//             ),
-//             NavIcon(
-//               iconData: Icons.feed,
-//               label: "Feed",
-//             ),
-//             SizedBox(
-//               width: 60,
-//             ),
-//             NavIcon(
-//               iconData: Icons.favorite,
-//               label: "Wishlist",
-//             ),
-//             NavIcon(
-//               iconData: Icons.date_range,
-//               label: "Calendar",
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
+//   _FeedVidState createState() => _FeedVidState();
 // }
 //
-// class NavIcon extends StatelessWidget {
-//   const NavIcon({
-//     Key? key,
-//     required this.iconData,
-//     required this.label,
-//   }) : super(key: key);
-//   final IconData iconData;
-//   final String label;
-//
+// class _FeedVidState extends State<FeedVid> {
+//   bool _customTileExpanded = false;
 //   @override
 //   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Icon(
-//           iconData,
-//           color: Colors.black54,
-//           size: 30,
-//         ),
-//         // Text(label),
-//       ],
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           Expanded(
+//             child: Stack(
+//               children: [
+//                 Container(
+//                   color: Colors.black,
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                     children: [
+//                       Align(
+//                         alignment: Alignment.bottomCenter,
+//                         child: Container(
+//                           // color: Colors.red,
+//                           width: 300,
+//                           child: const ExpansionTile(
+//                             title: Text(
+//                               'ExpansionTile 1',
+//                               style: TextStyle(
+//                                   color: Colors.white,
+//                                   fontWeight: FontWeight.w900,
+//                                   fontSize: 20),
+//                             ),
+//                             subtitle: Text(
+//                               'Trailing expansion arrow icon',
+//                               style:
+//                               TextStyle(color: Colors.white, fontSize: 18),
+//                             ),
+//                             children: <Widget>[
+//                               ListTile(
+//                                 title: Text(
+//                                   'This is tile number 1',
+//                                   style: TextStyle(
+//                                       color: Colors.white, fontSize: 15),
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                       Align(
+//                         alignment: Alignment.bottomRight,
+//                         child: Container(
+//                           width: 60,
+//                           // color: Colors.green,
+//                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.center,
+//                             mainAxisAlignment: MainAxisAlignment.end,
+//                             children: [
+//                               Container(
+//                                 height: 80,
+//                                 width: 60,
+//                                 // color: Colors.orange,
+//                                 child: Stack(
+//                                   children: [
+//                                     const Align(
+//                                       child: CircleAvatar(
+//                                         child: Icon(
+//                                           Icons.person,
+//                                           size: 40,
+//                                         ),
+//                                         radius: 30,
+//                                       ),
+//                                       alignment: Alignment.topCenter,
+//                                     ),
+//                                     Align(
+//                                       alignment: Alignment.bottomCenter,
+//                                       child: IconButton(
+//                                         color: Colors.redAccent,
+//                                         iconSize: 25,
+//                                         onPressed: () {},
+//                                         icon: const Icon(Icons.add_circle),
+//                                       ),
+//                                     ),
+//                                   ],
+//                                 ),
+//                               ),
+//                               const SizedBox(
+//                                 height: 1,
+//                               ),
+//                               IconButton(
+//                                 color: Colors.white,
+//                                 iconSize: 30,
+//                                 onPressed: () {},
+//                                 icon: const Icon(Icons.favorite),
+//                               ),
+//                               const Text(
+//                                 "Number",
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 10),
+//                               ),
+//                               const SizedBox(
+//                                 height: 20,
+//                               ),
+//                               IconButton(
+//                                 color: Colors.white,
+//                                 iconSize: 30,
+//                                 onPressed: () {},
+//                                 icon: const Icon(Icons.message),
+//                               ),
+//                               const Text(
+//                                 "Number",
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 10),
+//                               ),
+//                               const SizedBox(
+//                                 height: 20,
+//                               ),
+//                               IconButton(
+//                                 color: Colors.white,
+//                                 iconSize: 30,
+//                                 onPressed: () {},
+//                                 icon: const Icon(Icons.share),
+//                               ),
+//                               const Text(
+//                                 "Number",
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 10),
+//                               ),
+//                               const SizedBox(
+//                                 height: 20,
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 Align(
+//                   alignment: Alignment.topCenter,
+//                   child: Container(
+//                     height: 80,
+//                     // color: Colors.orange,
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.center,
+//                       children: [
+//                         const SizedBox(
+//                           height: 10,
+//                         ),
+//                         const Text(
+//                           "APP NAME/LOGO",
+//                           style: TextStyle(
+//                               color: Colors.white,
+//                               fontWeight: FontWeight.w900,
+//                               fontSize: 20),
+//                         ),
+//                         IntrinsicHeight(
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.center,
+//                             children: const [
+//                               Text(
+//                                 "Following",
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 15),
+//                               ),
+//                               SizedBox(
+//                                 width: 2,
+//                               ),
+//                               VerticalDivider(
+//                                 width: 10,
+//                                 thickness: 1,
+//                                 indent: 2,
+//                                 endIndent: 2,
+//                                 color: Colors.white,
+//                               ),
+//                               SizedBox(
+//                                 width: 2,
+//                               ),
+//                               Text(
+//                                 "For You",
+//                                 style: TextStyle(
+//                                     color: Colors.white,
+//                                     fontWeight: FontWeight.w900,
+//                                     fontSize: 15),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
 //     );
 //   }
 // }

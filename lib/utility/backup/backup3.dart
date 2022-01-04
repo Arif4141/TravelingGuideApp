@@ -1,154 +1,226 @@
-// import 'package:ardin/menu/dashboard/category/category.dart';
-// import 'package:ardin/menu/header/header.dart';
-// import 'package:ardin/menu/navbar/bottom_nav.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:ardin/utility/data/feed_dummy.dart';
 // import 'package:flutter/material.dart';
 //
-// class Main_Menu extends StatefulWidget {
-//   const Main_Menu({Key? key}) : super(key: key);
+// class FeedVid extends StatefulWidget {
+//   const FeedVid({Key? key}) : super(key: key);
 //
 //   @override
-//   _Main_MenuState createState() => _Main_MenuState();
+//   _FeedVidState createState() => _FeedVidState();
 // }
 //
-// class _Main_MenuState extends State<Main_Menu> {
-//   int _currentIndex = 0;
-//   List cardList = [
-//     Container(
-//       decoration: BoxDecoration(
-//         color: Colors.grey,
-//         borderRadius: BorderRadius.all(
-//           Radius.circular(5),
-//         ),
-//       ),
-//       height: 200,
-//       width: 100,
-//     ),
-//     Container(
-//       decoration: BoxDecoration(
-//         color: Colors.grey,
-//         borderRadius: BorderRadius.all(
-//           Radius.circular(5),
-//         ),
-//       ),
-//       height: 200,
-//       width: 100,
-//     ),
-//   ];
-//   List<T> map<T>(List list, Function handler) {
-//     List<T> result = [];
-//     for (var i = 0; i < list.length; i++) {
-//       result.add(handler(i, list[i]));
-//     }
-//     return result;
-//   }
-//
+// class _FeedVidState extends State<FeedVid> {
+//   bool _customTileExpanded = false;
 //   @override
 //   Widget build(BuildContext context) {
-//     Size size = MediaQuery.of(context).size;
-//     return Container(
-//       color: Colors.white,
-//       child: SingleChildScrollView(
-//         physics: BouncingScrollPhysics(),
-//         child: Container(
-//           // color: Colors.white,
-//           child: Column(
-//             children: [
-//               Container(
-//                 decoration: BoxDecoration(
-//                   color: Colors.grey,
-//                   borderRadius: BorderRadius.all(
-//                     Radius.circular(5),
-//                   ),
-//                 ),
-//                 height: 200,
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               CarouselSlider(
-//                 options: CarouselOptions(
-//                   height: 200.0,
-//                   autoPlay: true,
-//                   autoPlayInterval: Duration(seconds: 10),
-//                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-//                   autoPlayCurve: Curves.fastOutSlowIn,
-//                   pauseAutoPlayOnTouch: true,
-//                   aspectRatio: 2.0,
-//                   onPageChanged: (index, reason) {
-//                     setState(() {
-//                       _currentIndex = index;
-//                     });
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           Expanded(
+//             child: Stack(
+//               children: [
+//                 ListView.builder(
+//                   shrinkWrap: true,
+//                   itemCount: FeedContent.length,
+//                   itemBuilder: (context, index) {
+//                     return buildContainer(FeedContent[index], context);
 //                   },
 //                 ),
-//                 items: cardList.map((card) {
-//                   return Builder(builder: (BuildContext context) {
-//                     return Container(
-//                       height: MediaQuery.of(context).size.height * 0.30,
-//                       width: MediaQuery.of(context).size.width,
-//                       child: Card(
-//                         color: Colors.grey,
-//                         child: card,
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     Align(
+//                       alignment: Alignment.bottomCenter,
+//                       child: Container(
+//                         // color: Colors.red,
+//                         width: 300,
+//                         child: const ExpansionTile(
+//                           title: Text(
+//                             'ExpansionTile 1',
+//                             style: TextStyle(
+//                                 color: Colors.white,
+//                                 fontWeight: FontWeight.w900,
+//                                 fontSize: 20),
+//                           ),
+//                           subtitle: Text(
+//                             'Trailing expansion arrow icon',
+//                             style: TextStyle(color: Colors.white, fontSize: 18),
+//                           ),
+//                           children: <Widget>[
+//                             ListTile(
+//                               title: Text(
+//                                 'This is tile number 1',
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 15),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
 //                       ),
-//                     );
-//                   });
-//                 }).toList(),
-//               ),
-//               SizedBox(
-//                 height: 5,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: map<Widget>(cardList, (index, url) {
-//                   return Container(
-//                     width: 10.0,
-//                     height: 10.0,
-//                     margin:
-//                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-//                     decoration: BoxDecoration(
-//                       shape: BoxShape.circle,
-//                       color: _currentIndex == index
-//                           ? Colors.blueAccent
-//                           : Colors.grey,
 //                     ),
-//                   );
-//                 }),
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Category(),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Container(
-//                 color: Colors.grey,
-//                 height: 100,
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Container(
-//                 color: Colors.grey,
-//                 height: 100,
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Container(
-//                 color: Colors.grey,
-//                 height: 100,
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Container(
-//                 color: Colors.grey,
-//                 height: 100,
-//               ),
-//             ],
-//           ),
-//         ),
+//                     Align(
+//                       alignment: Alignment.bottomRight,
+//                       child: Container(
+//                         width: 60,
+//                         // color: Colors.green,
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.center,
+//                           mainAxisAlignment: MainAxisAlignment.end,
+//                           children: [
+//                             Container(
+//                               height: 80,
+//                               width: 60,
+//                               // color: Colors.orange,
+//                               child: Stack(
+//                                 children: [
+//                                   const Align(
+//                                     child: CircleAvatar(
+//                                       child: Icon(
+//                                         Icons.person,
+//                                         size: 40,
+//                                       ),
+//                                       radius: 30,
+//                                     ),
+//                                     alignment: Alignment.topCenter,
+//                                   ),
+//                                   Align(
+//                                     alignment: Alignment.bottomCenter,
+//                                     child: IconButton(
+//                                       color: Colors.redAccent,
+//                                       iconSize: 25,
+//                                       onPressed: () {},
+//                                       icon: const Icon(Icons.add_circle),
+//                                     ),
+//                                   ),
+//                                 ],
+//                               ),
+//                             ),
+//                             const SizedBox(
+//                               height: 1,
+//                             ),
+//                             IconButton(
+//                               color: Colors.white,
+//                               iconSize: 30,
+//                               onPressed: () {},
+//                               icon: const Icon(Icons.favorite),
+//                             ),
+//                             const Text(
+//                               "Number",
+//                               style:
+//                               TextStyle(color: Colors.white, fontSize: 10),
+//                             ),
+//                             const SizedBox(
+//                               height: 20,
+//                             ),
+//                             IconButton(
+//                               color: Colors.white,
+//                               iconSize: 30,
+//                               onPressed: () {},
+//                               icon: const Icon(Icons.message),
+//                             ),
+//                             const Text(
+//                               "Number",
+//                               style:
+//                               TextStyle(color: Colors.white, fontSize: 10),
+//                             ),
+//                             const SizedBox(
+//                               height: 20,
+//                             ),
+//                             IconButton(
+//                               color: Colors.white,
+//                               iconSize: 30,
+//                               onPressed: () {},
+//                               icon: const Icon(Icons.share),
+//                             ),
+//                             const Text(
+//                               "Number",
+//                               style:
+//                               TextStyle(color: Colors.white, fontSize: 10),
+//                             ),
+//                             const SizedBox(
+//                               height: 20,
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 Align(
+//                   alignment: Alignment.topCenter,
+//                   child: Container(
+//                     height: 80,
+//                     // color: Colors.orange,
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.center,
+//                       children: [
+//                         const SizedBox(
+//                           height: 10,
+//                         ),
+//                         const Text(
+//                           "APP NAME/LOGO",
+//                           style: TextStyle(
+//                               color: Colors.white,
+//                               fontWeight: FontWeight.w900,
+//                               fontSize: 20),
+//                         ),
+//                         IntrinsicHeight(
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.center,
+//                             children: const [
+//                               Text(
+//                                 "Following",
+//                                 style: TextStyle(
+//                                     color: Colors.white, fontSize: 15),
+//                               ),
+//                               SizedBox(
+//                                 width: 2,
+//                               ),
+//                               VerticalDivider(
+//                                 width: 10,
+//                                 thickness: 1,
+//                                 indent: 2,
+//                                 endIndent: 2,
+//                                 color: Colors.white,
+//                               ),
+//                               SizedBox(
+//                                 width: 2,
+//                               ),
+//                               Text(
+//                                 "For You",
+//                                 style: TextStyle(
+//                                     color: Colors.white,
+//                                     fontWeight: FontWeight.w900,
+//                                     fontSize: 15),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+//
+//   Container buildContainer(FeedData Data, BuildContext context) {
+//     final timeThen = Data.timeStamp;
+//     final timeNow = DateTime.now();
+//     final timeDifferenceSec = timeNow.difference(timeThen).inSeconds;
+//     final timeDifferenceMin = timeNow.difference(timeThen).inMinutes;
+//     final timeDifferenceHour = timeNow.difference(timeThen).inHours;
+//     final timeDifferenceDays = timeNow.difference(timeThen).inDays;
+//     return Container(
+//       color: Colors.black,
+//       height: MediaQuery.of(context).size.height,
+//       child: Text(
+//         Data.title.toString(),
+//         style: TextStyle(
+//             color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20),
 //       ),
 //     );
 //   }

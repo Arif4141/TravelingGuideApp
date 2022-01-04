@@ -1,3 +1,4 @@
+import 'package:ardin/menu/dashboard/category/category_menu.dart';
 import 'package:ardin/utility/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,8 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class Category extends StatefulWidget {
   const Category({
     Key? key,
+    // required this.tapIndex,
   }) : super(key: key);
 
+  // final int tapIndex;
   @override
   State<Category> createState() => _CategoryState();
 }
@@ -74,7 +77,13 @@ class IconButt extends StatelessWidget {
           iconSize: 70,
           icon: SvgPicture.asset(icon, color: Colors.black87),
           onPressed: () {
-            print("Hello");
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => CategoryMenus(),
+              ),
+              // MaterialPageRoute(builder: (context) => menu[index]),
+            );
           },
         ),
         Text(

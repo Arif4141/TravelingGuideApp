@@ -28,6 +28,7 @@ class _HeaderState extends State<Header> {
 
   @override
   void dispose() {
+    super.dispose();
     _focus.removeListener(_onFocusChange);
     _focus.dispose();
   }

@@ -1,3 +1,4 @@
+import 'package:ardin/utility/constant.dart';
 import 'package:ardin/utility/data/feed_dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -48,7 +49,7 @@ class _FeedStuffState extends State<FeedStuff> {
   }
 }
 
-Container FeedCard(FeedData Data) {
+Column FeedCard(FeedData Data) {
   final timeThen = Data.timeStamp;
   final timeNow = DateTime.now();
   final timeDifferenceSec = timeNow.difference(timeThen).inSeconds;
@@ -56,84 +57,117 @@ Container FeedCard(FeedData Data) {
   final timeDifferenceHour = timeNow.difference(timeThen).inHours;
   final timeDifferenceDays = timeNow.difference(timeThen).inDays;
 
-  return Container(
-    child: Column(
-      children: [
-        Row(
+  return Column(
+    children: [
+      Container(
+        padding: EdgeInsets.all(defaultPadding),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Colors.white,
+          boxShadow: [
+            // BoxShadow(
+            //   color: Colors.grey,
+            //   spreadRadius: 0.2,
+            //   blurRadius: 3,
+            //   offset: Offset(0, 0),
+            // ),
+          ],
+        ),
+        child: Column(
           children: [
-            const CircleAvatar(
-              child: Icon(Icons.person),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                Text(Data.uploader.toString()),
-                Text(Data.caption.toString()),
+                const CircleAvatar(
+                  child: Icon(Icons.person),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(Data.uploader.toString()),
+                    Text(Data.caption.toString()),
+                  ],
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: timeDifferenceDays >= 1
+                        ? Text(
+                            timeDifferenceDays.toString() + " Days ago",
+                          )
+                        : timeDifferenceHour >= 1
+                            ? Text(
+                                timeDifferenceHour.toString() + " Hours ago",
+                              )
+                            : timeDifferenceMin >= 1
+                                ? Text(
+                                    timeDifferenceMin.toString() +
+                                        " Minutes ago",
+                                  )
+                                : Text(
+                                    timeDifferenceSec.toString() +
+                                        " Seconds ago",
+                                  ),
+                  ),
+                ),
               ],
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: timeDifferenceDays >= 1
-                    ? Text(
-                        timeDifferenceDays.toString() + " Days ago",
-                      )
-                    : timeDifferenceHour >= 1
-                        ? Text(
-                            timeDifferenceHour.toString() + " Hours ago",
-                          )
-                        : timeDifferenceMin >= 1
-                            ? Text(
-                                timeDifferenceMin.toString() + " Minutes ago",
-                              )
-                            : Text(
-                                timeDifferenceSec.toString() + " Seconds ago",
-                              ),
-              ),
+            const SizedBox(
+              height: 10,
             ),
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 150,
-          // width: 300,
-          color: Colors.black38,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  Data.title.toString(),
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0),
+              child: Container(
+                height: 150,
+                // width: 300,
+                color: Colors.black38,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        Data.title.toString(),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-        Row(
-          children: [
-            IconButton(
-              color: Colors.black54,
-              onPressed: () {},
-              icon: const Icon(Icons.thumb_up_alt_outlined),
             ),
-            Text(
-              Data.like.toString(),
+            Row(
+              children: [
+                IconButton(
+                  color: Colors.black54,
+                  onPressed: () {},
+                  icon: const Icon(Icons.thumb_up_alt_outlined),
+                ),
+                Text(
+                  Data.like.toString(),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                IconButton(
+                  color: Colors.black54,
+                  onPressed: () {},
+                  icon: const Icon(Icons.comment_outlined),
+                ),
+                Text(
+                  Data.commentNum.toString(),
+                ),
+              ],
             ),
           ],
         ),
-        const SizedBox(
-          height: 20,
-        )
-      ],
-    ),
+      ),
+      SizedBox(
+        height: 30,
+      )
+    ],
   );
 }
